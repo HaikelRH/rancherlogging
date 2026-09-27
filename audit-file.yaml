@@ -1,0 +1,12 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterOutput
+metadata:
+  name: audit-file
+  namespace: cattle-logging-system
+spec:
+  file:
+    path: /var/log/rancher-logging/audit/%Y%m%d.log
+    append: true
+    buffer:
+      timekey: 60s
+      timekey_wait: 10s
