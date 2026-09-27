@@ -1,0 +1,13 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterFlow
+metadata:
+  name: rancher-audit-to-syslog-and-file
+  namespace: cattle-logging-system
+spec:
+  match:
+    - select:
+        namespaces: ["cattle-system"]
+        container_names: ["rancher-audit-log"]
+  globalOutputRefs:
+    - audit-syslog
+    - audit-file
