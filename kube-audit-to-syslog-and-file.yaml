@@ -1,0 +1,13 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterFlow
+metadata:
+  name: kube-audit-to-syslog-and-file
+  namespace: cattle-logging-system
+spec:
+  match:
+    - select:
+        labels:
+          app.kubernetes.io/name: rancher-logging-kube-audit
+  globalOutputRefs:
+    - audit-syslog
+    - audit-file
