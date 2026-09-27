@@ -1,0 +1,16 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterOutput
+metadata:
+  name: audit-syslog
+  namespace: cattle-logging-system
+spec:
+  syslog:
+    host: syslog.example.com
+    port: 514
+    transport: tcp        # or udp/tls
+    format:
+      type: json
+    buffer:
+      timekey: 30s
+      timekey_wait: 10s
+      flush_interval: 5s
